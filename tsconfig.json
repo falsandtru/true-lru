@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "ES2021",
+    "outDir": "dist",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "strict": true,
+    "strictFunctionTypes": false,
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "ignoreDeprecations": "5.0",
+    "noFallthroughCasesInSwitch": true,
+    "noErrorTruncation": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": [
+    "*.ts",
+    "src/**/*.ts",
+    "test/**/*.ts",
+    "benchmark/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
