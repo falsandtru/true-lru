@@ -1,6 +1,6 @@
 {
   "name": "true-lru",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "True LRU.",
   "private": true,
   "homepage": "https://github.com/falsandtru/true-lru",
