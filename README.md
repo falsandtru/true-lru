@@ -221,7 +221,7 @@ const data = {
 
 ![image](https://github.com/falsandtru/true-lru/assets/3143368/8f38ddc5-6278-4528-b8e9-ceae88b38cd6)
 
-W-TinyLFU > DWC > (LIRS), TLRU > SLRU > ARC > LRU
+W-TinyLFU > DWC > TLRU, (LIRS) > SLRU > ARC > LRU
 
 - TLRU is a straightforward increase in hit ratio to the end.
 - TLRU is beyond the bounds of SLRU.
@@ -335,7 +335,7 @@ const data = {
 
 ![image](https://github.com/falsandtru/true-lru/assets/3143368/6f7b2e5e-7479-4596-a99e-86b288f2da76)
 
-W-TinyLFU > (LIRS) > DWC > SLRU > TLRU, ARC > LRU
+W-TinyLFU > (LIRS) > DWC > TLRU, SLRU, ARC > LRU
 
 ```
 S3 100,000
