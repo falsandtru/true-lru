@@ -2,7 +2,7 @@
 
 ![CI](https://github.com/falsandtru/true-lru/workflows/CI/badge.svg)
 
-True LRU.
+True LRU based on true recency.
 
 TLRU and TRC are abbreviations for TrueLRU (spica/tlru).
 

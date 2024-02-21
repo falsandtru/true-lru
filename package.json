@@ -1,7 +1,7 @@
 {
   "name": "true-lru",
   "version": "0.0.4",
-  "description": "True LRU.",
+  "description": "True LRU based on true recency.",
   "private": true,
   "homepage": "https://github.com/falsandtru/true-lru",
   "repository": {
