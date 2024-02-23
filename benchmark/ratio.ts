@@ -21,38 +21,40 @@ describe('Benchmark: Package', async function () {
     }
   }
   async function run(label: string, source: string, capacity: number) {
-    const keys = await parse(source);
+    const [keys, cnts] = await parse(source);
     const lru = new LRU<number, 1>(capacity);
     const sru = new SLRU<number, 1>(capacity);
     const trc = new TLRU<number, 1>(capacity);
     const stats = new Stats();
     for (let i = 0; i < keys.length; ++i) {
-      const key = keys[i];
-      ++stats.total;
-      stats.lru += lru.get(key) ?? (lru.set(key, 1), 0);
-      stats.sru += sru.get(key) ?? (sru.set(key, 1), 0);
-      stats.trc += trc.get(key) ?? (trc.set(key, 1), 0);
+      for (let key = keys[i], cnt = cnts[i]; cnt--; ++key) {
+        ++stats.total;
+        stats.lru += lru.get(key) ?? (lru.set(key, 1), 0);
+        stats.sru += sru.get(key) ?? (sru.set(key, 1), 0);
+        stats.trc += trc.get(key) ?? (trc.set(key, 1), 0);
+      }
     }
     print(`${label} ${capacity.toLocaleString('en')}`, stats);
   }
-  const parse = reduce(async function (source: string): Promise<readonly number[]> {
+  const parse = reduce(async function (source: string): Promise<readonly [readonly number[], readonly number[]]> {
     const { responseText: data } = await cofetch(source);
-    const acc = [];
+    const keys = [];
+    const cnts = [];
     for (let i = 0; i < data.length; i = data.indexOf('\n', i + 1) + 1 || data.length) {
       const line = data.slice(i, data.indexOf('\n', i)).trim();
       const fields = line.includes(',')
         ? line.split(',').slice(1, 4)
-        : line.split(/\s/).slice(0, 2);
+        : line.split(' ').slice(0, 2);
       if (fields.length === 0) break;
       const key = +fields[0];
       const cnt = line.includes(',')
         ? fields[2].toLowerCase() === 'r' ? Math.ceil(+fields[1] / 512) : 0
         : +fields[1] || 1;
-      for (let i = 0; i < cnt; ++i) {
-        acc.push(key + i);
-      }
+      if (cnt === 0) continue;
+      keys.push(key);
+      cnts.push(cnt);
     }
-    return acc;
+    return [keys, cnts];
   });
   function print(label: string, stats: Stats): void {
     console.log(label);
