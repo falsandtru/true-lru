@@ -170,6 +170,339 @@ const config = {
 };
 -->
 
+### WS1
+
+<!--
+const data = {
+  labels: [1e6, 2e6, 3e6, 4e6, 5e6, 6e6, 7e6, 8e6],
+  datasets: [
+    {
+      label: 'Optimal',
+      data: [27.31, 41.28, 51.04, 57.8, 62.72, 65.85, 67.22, 67.22],
+    },
+    {
+      label: 'LRU',
+      data: [2.95, 6.09, 9.63, 21.6, 33.92, 45.74, 54.89, 61.4],
+      borderColor: Utils.color(0),
+    },
+    {
+      label: 'SLRU',
+      data: [6.96, 12.67, 17.69, 27.09, 37.88, 48.43, 56.76, 62.12],
+      borderColor: Utils.color(4),
+    },
+    {
+      label: 'TLRU',
+      data: [8.09, 18.03, 26.92, 35.88, 44.19, 51.66, 57.70, 62.46],
+      borderColor: Utils.color(1),
+    },
+    {
+      label: 'DWC',
+      data: [10.56, 20.78, 30.22, 38.93, 46.85, 53.50, 58.89, 62.93],
+      borderColor: Utils.color(2),
+    },
+    {
+      label: 'ARC',
+      data: [8.05, 14.49, 23.62, 31.18, 39.63, 49.82, 57.78, 62.19],
+      borderColor: Utils.color(6),
+    },
+    {
+      label: 'LIRS',
+      data: [12.74, 18.65, 29.05, 39.08, 47.68, 54.81, 59.9, 63.57],
+      borderColor: Utils.color(3),
+    },
+    {
+      label: 'W-TinyLFU',
+      data: [11.93, 23.08, 32.87, 41.45, 48.92, 55.15, 59.82, 63.45],
+      borderColor: Utils.color(8),
+    },
+  ]
+};
+-->
+
+![image](https://github.com/falsandtru/true-lru/assets/3143368/1fcc3808-7049-4dbf-9319-43ea3e57a064)
+
+W-TinyLFU > (LIRS), DWC > TLRU > ARC > SLRU > LRU
+
+```
+WS1 1,000,000
+LRU  hit ratio 2.95%
+SLRU hit ratio 6.96%
+TLRU hit ratio 8.09%
+TLRU - LRU  hit ratio delta 5.14%
+TLRU - SLRU hit ratio delta 1.12%
+
+WS1 2,000,000
+LRU  hit ratio 6.08%
+SLRU hit ratio 12.67%
+TLRU hit ratio 18.03%
+TLRU - LRU  hit ratio delta 11.94%
+TLRU - SLRU hit ratio delta 5.35%
+
+WS1 3,000,000
+LRU  hit ratio 9.63%
+SLRU hit ratio 17.69%
+TLRU hit ratio 26.92%
+TLRU - LRU  hit ratio delta 17.29%
+TLRU - SLRU hit ratio delta 9.22%
+
+WS1 4,000,000
+LRU  hit ratio 21.59%
+SLRU hit ratio 27.09%
+TLRU hit ratio 35.88%
+TLRU - LRU  hit ratio delta 14.28%
+TLRU - SLRU hit ratio delta 8.78%
+
+WS1 5,000,000
+LRU  hit ratio 33.91%
+SLRU hit ratio 37.88%
+TLRU hit ratio 44.19%
+TLRU - LRU  hit ratio delta 10.28%
+TLRU - SLRU hit ratio delta 6.31%
+
+WS1 6,000,000
+LRU  hit ratio 45.74%
+SLRU hit ratio 48.43%
+TLRU hit ratio 51.66%
+TLRU - LRU  hit ratio delta 5.92%
+TLRU - SLRU hit ratio delta 3.22%
+
+WS1 7,000,000
+LRU  hit ratio 54.89%
+SLRU hit ratio 56.76%
+TLRU hit ratio 57.70%
+TLRU - LRU  hit ratio delta 2.81%
+TLRU - SLRU hit ratio delta 0.93%
+
+WS1 8,000,000
+LRU  hit ratio 61.40%
+SLRU hit ratio 62.12%
+TLRU hit ratio 62.46%
+TLRU - LRU  hit ratio delta 1.06%
+TLRU - SLRU hit ratio delta 0.34%
+```
+
+### WS2
+
+<!--
+const data = {
+  labels: [1e6, 2e6, 3e6, 4e6, 5e6, 6e6, 7e6, 8e6],
+  datasets: [
+    {
+      label: 'Optimal',
+      data: [29.68, 46.08, 58.2, 67.41, 74.54, 79.86, 83.72, 86.44],
+    },
+    {
+      label: 'LRU',
+      data: [2.91, 6.2, 10.1, 23.46, 37.94, 51.69, 63.81, 73.12],
+      borderColor: Utils.color(0),
+    },
+    {
+      label: 'SLRU',
+      data: [12.31, 21.40, 28.48, 37.81, 48.89, 59.29, 69.45, 76.65],
+      borderColor: Utils.color(4),
+    },
+    {
+      label: 'TLRU',
+      data: [9.28, 19.86, 30.05, 40.41, 50.39, 60.05, 69.29, 76.33],
+      borderColor: Utils.color(1),
+    },
+    {
+      label: 'DWC',
+      data: [12.73, 24.21, 35.00, 44.72, 54.07, 62.40, 69.48, 75.77],
+      borderColor: Utils.color(2),
+    },
+    {
+      label: 'ARC',
+      data: [15.06, 26.23, 30.87, 38.66, 48.03, 56.23, 66.8, 75.28],
+      borderColor: Utils.color(6),
+    },
+    {
+      label: 'LIRS',
+      data: [15.18, 20.39, 32.43, 44.38, 55.23, 64.56, 72.1, 78.04],
+      borderColor: Utils.color(3),
+    },
+    {
+      label: 'W-TinyLFU',
+      data: [15.47, 28.79, 40.63, 51.03, 60.29, 67.66, 73.69, 78.35],
+      borderColor: Utils.color(8),
+    },
+  ]
+};
+-->
+
+![image](https://github.com/falsandtru/true-lru/assets/3143368/1e3c83a1-4ec8-434e-9593-0e51d607c962)
+
+W-TinyLFU > (LIRS), DWC > TLRU, SLRU > ARC > LRU
+
+```
+WS2 1,000,000
+LRU  hit ratio 2.91%
+SLRU hit ratio 12.31%
+TLRU hit ratio 9.28%
+TLRU - LRU  hit ratio delta 6.37%
+TLRU - SLRU hit ratio delta -3.03%
+
+WS2 2,000,000
+LRU  hit ratio 6.19%
+SLRU hit ratio 21.40%
+TLRU hit ratio 19.86%
+TLRU - LRU  hit ratio delta 13.67%
+TLRU - SLRU hit ratio delta -1.54%
+
+WS2 3,000,000
+LRU  hit ratio 10.09%
+SLRU hit ratio 28.48%
+TLRU hit ratio 30.05%
+TLRU - LRU  hit ratio delta 19.95%
+TLRU - SLRU hit ratio delta 1.57%
+
+WS2 4,000,000
+LRU  hit ratio 23.45%
+SLRU hit ratio 37.81%
+TLRU hit ratio 40.41%
+TLRU - LRU  hit ratio delta 16.95%
+TLRU - SLRU hit ratio delta 2.59%
+
+WS2 5,000,000
+LRU  hit ratio 37.94%
+SLRU hit ratio 48.89%
+TLRU hit ratio 50.39%
+TLRU - LRU  hit ratio delta 12.45%
+TLRU - SLRU hit ratio delta 1.50%
+
+WS2 6,000,000
+LRU  hit ratio 51.69%
+SLRU hit ratio 59.29%
+TLRU hit ratio 60.05%
+TLRU - LRU  hit ratio delta 8.36%
+TLRU - SLRU hit ratio delta 0.76%
+
+WS2 7,000,000
+LRU  hit ratio 63.81%
+SLRU hit ratio 69.45%
+TLRU hit ratio 69.29%
+TLRU - LRU  hit ratio delta 5.48%
+TLRU - SLRU hit ratio delta -0.15%
+
+WS2 8,000,000
+LRU  hit ratio 73.11%
+SLRU hit ratio 76.65%
+TLRU hit ratio 76.33%
+TLRU - LRU  hit ratio delta 3.21%
+TLRU - SLRU hit ratio delta -0.32%
+```
+
+### F1
+
+<!--
+const data = {
+  labels: [2500, 5000, 7500, 10000, 12500, 15000, 17500, 20000],
+  datasets: [
+    {
+      label: 'Optimal',
+      data: [38.49, 41.77, 43.96, 45.65, 47.13, 48.38, 49.5, 50.52],
+    },
+    {
+      label: 'LRU',
+      data: [27.74, 30.56, 32.18, 33.27, 34.19, 34.97, 35.62, 36.17],
+      borderColor: Utils.color(0),
+    },
+    {
+      label: 'SLRU',
+      data: [28.32, 32.18, 34.48, 35.98, 37.09, 37.79, 38.45, 39.01],
+      borderColor: Utils.color(4),
+    },
+    {
+      label: 'TLRU',
+      data: [27.48, 31.52, 34.04, 35.57, 36.72, 37.60, 38.32, 38.82],
+      borderColor: Utils.color(1),
+    },
+    {
+      label: 'DWC',
+      data: [24.71, 29.36, 32.24, 34.66, 36.28, 37.03, 37.90, 38.31],
+      borderColor: Utils.color(2),
+    },
+    {
+      label: 'ARC',
+      data: [30.35, 33.42, 35.04, 36.37, 37.28, 37.81, 38.52, 38.98],
+      borderColor: Utils.color(6),
+    },
+    {
+      label: 'LIRS',
+      data: [27.42, 31.75, 33.42, 35.06, 35.89, 36.58, 37.22, 37.75],
+      borderColor: Utils.color(3),
+    },
+    {
+      label: 'W-TinyLFU',
+      data: [22.87, 27.6, 30.1, 31.71, 32.65, 33.47, 34.09, 33.92],
+      borderColor: Utils.color(8),
+    },
+  ]
+};
+-->
+
+![image](https://github.com/falsandtru/true-lru/assets/3143368/8a698a78-d3ca-4eae-b8b1-da3389a28a9e)
+
+ARC > SLRU, TLRU > (LIRS), DWC > LRU > W-TinyLFU
+
+```
+F1 2,500
+LRU  hit ratio 27.74%
+SLRU hit ratio 28.32%
+TLRU hit ratio 27.48%
+TLRU - LRU  hit ratio delta -0.25%
+TLRU - SLRU hit ratio delta -0.83%
+
+F1 5,000
+LRU  hit ratio 30.55%
+SLRU hit ratio 32.18%
+TLRU hit ratio 31.52%
+TLRU - LRU  hit ratio delta 0.96%
+TLRU - SLRU hit ratio delta -0.66%
+
+F1 7,500
+LRU  hit ratio 32.18%
+SLRU hit ratio 34.48%
+TLRU hit ratio 34.04%
+TLRU - LRU  hit ratio delta 1.86%
+TLRU - SLRU hit ratio delta -0.43%
+
+F1 10,000
+LRU  hit ratio 33.27%
+SLRU hit ratio 35.98%
+TLRU hit ratio 35.57%
+TLRU - LRU  hit ratio delta 2.29%
+TLRU - SLRU hit ratio delta -0.41%
+
+F1 12,500
+LRU  hit ratio 34.19%
+SLRU hit ratio 37.09%
+TLRU hit ratio 36.72%
+TLRU - LRU  hit ratio delta 2.53%
+TLRU - SLRU hit ratio delta -0.36%
+
+F1 15,000
+LRU  hit ratio 34.97%
+SLRU hit ratio 37.79%
+TLRU hit ratio 37.60%
+TLRU - LRU  hit ratio delta 2.63%
+TLRU - SLRU hit ratio delta -0.18%
+
+F1 17,500
+LRU  hit ratio 35.62%
+SLRU hit ratio 38.45%
+TLRU hit ratio 38.32%
+TLRU - LRU  hit ratio delta 2.70%
+TLRU - SLRU hit ratio delta -0.12%
+
+F1 20,000
+LRU  hit ratio 36.17%
+SLRU hit ratio 39.01%
+TLRU hit ratio 38.82%
+TLRU - LRU  hit ratio delta 2.65%
+TLRU - SLRU hit ratio delta -0.18%
+```
+
 ### DS1
 
 <!--
@@ -197,7 +530,7 @@ const data = {
     },
     {
       label: 'DWC',
-      data: [14.73, 27.94, 39.46, 44.20, 50.19, 56.83, 62.55, 70.03],
+      data: [14.07, 27.89, 39.55, 43.45, 49.71, 56.46, 63.21, 69.44],
       borderColor: Utils.color(2),
     },
     {
@@ -219,12 +552,9 @@ const data = {
 };
 -->
 
-![image](https://github.com/falsandtru/true-lru/assets/3143368/8f38ddc5-6278-4528-b8e9-ceae88b38cd6)
+![image](https://github.com/falsandtru/true-lru/assets/3143368/2d50e070-85a2-4af5-9886-ba7949f3dd94)
 
 W-TinyLFU > DWC > TLRU, (LIRS) > SLRU > ARC > LRU
-
-- TLRU is a straightforward increase in hit ratio to the end.
-- TLRU is beyond the bounds of SLRU.
 
 ```
 DS1 1,000,000
@@ -311,7 +641,7 @@ const data = {
     },
     {
       label: 'DWC',
-      data: [10.14, 20.25, 27.39, 32.69, 38.12, 46.82, 55.71, 64.03],
+      data: [9.91, 19.41, 28.23, 36.73, 44.59, 52.05, 58.66, 66.02],
       borderColor: Utils.color(2),
     },
     {
@@ -333,9 +663,9 @@ const data = {
 };
 -->
 
-![image](https://github.com/falsandtru/true-lru/assets/3143368/6f7b2e5e-7479-4596-a99e-86b288f2da76)
+![image](https://github.com/falsandtru/true-lru/assets/3143368/fa17f92a-3347-44f6-81ae-a70bf85620b3)
 
-W-TinyLFU > (LIRS) > DWC > TLRU, SLRU, ARC > LRU
+W-TinyLFU > (LIRS), DWC > TLRU, SLRU, ARC > LRU
 
 ```
 S3 100,000
@@ -422,7 +752,7 @@ const data = {
     },
     {
       label: 'DWC',
-      data: [19.59, 29.12, 34.90, 37.93, 39.96, 41.79, 43.43, 44.70],
+      data: [19.54, 29.36, 34.81, 37.74, 39.94, 41.81, 43.22, 44.62],
       borderColor: Utils.color(2),
     },
     {
@@ -444,7 +774,7 @@ const data = {
 };
 -->
 
-![image](https://github.com/falsandtru/true-lru/assets/3143368/a6b9dbe9-6eb1-483f-bc0c-926cf47f57c3)
+![image](https://github.com/falsandtru/true-lru/assets/3143368/69f2fe9c-8b70-4fa8-9182-706ffccc26a4)
 
 ARC > DWC > SLRU, TLRU > W-TinyLFU > (LIRS) > LRU
 
@@ -533,7 +863,7 @@ const data = {
     },
     {
       label: 'DWC',
-      data: [15.44, 31.53, 41.55, 49.30, 52.42, 53.49, 55.60, 57.96],
+      data: [15.54, 31.38, 41.57, 47.83, 52.55, 53.64, 54.70, 57.96],
       borderColor: Utils.color(2),
     },
     {
@@ -555,11 +885,9 @@ const data = {
 };
 -->
 
-![image](https://github.com/falsandtru/true-lru/assets/3143368/d8b76e18-7328-4e7e-aa84-cf4b758256af)
+![image](https://github.com/falsandtru/true-lru/assets/3143368/c4c608bd-9bf1-4b25-a957-fe8f0627a6cb)
 
 W-TinyLFU, (LIRS) > DWC > TLRU >> SLRU > ARC > LRU
-
-- TLRU has the loop resistance.
 
 ```
 GLI 250
@@ -619,134 +947,7 @@ TLRU - LRU  hit ratio delta 0.54%
 TLRU - SLRU hit ratio delta 0.54%
 ```
 
-<!--
-```
-WS1 1,000,000
-LRU  hit ratio 2.95%
-SLRU hit ratio 6.96%
-TLRU hit ratio 8.09%
-TLRU - LRU  hit ratio delta 5.14%
-TLRU - SLRU hit ratio delta 1.12%
-
-WS1 2,000,000
-LRU  hit ratio 6.08%
-SLRU hit ratio 12.67%
-TLRU hit ratio 18.03%
-TLRU - LRU  hit ratio delta 11.94%
-TLRU - SLRU hit ratio delta 5.35%
-
-WS1 3,000,000
-LRU  hit ratio 9.63%
-SLRU hit ratio 17.69%
-TLRU hit ratio 26.92%
-TLRU - LRU  hit ratio delta 17.29%
-TLRU - SLRU hit ratio delta 9.22%
-
-WS1 4,000,000
-LRU  hit ratio 21.59%
-SLRU hit ratio 27.09%
-TLRU hit ratio 35.88%
-TLRU - LRU  hit ratio delta 14.28%
-TLRU - SLRU hit ratio delta 8.78%
-
-WS1 5,000,000
-LRU  hit ratio 33.91%
-SLRU hit ratio 37.88%
-TLRU hit ratio 44.19%
-TLRU - LRU  hit ratio delta 10.28%
-TLRU - SLRU hit ratio delta 6.31%
-
-WS1 6,000,000
-LRU  hit ratio 45.74%
-SLRU hit ratio 48.43%
-TLRU hit ratio 51.66%
-TLRU - LRU  hit ratio delta 5.92%
-TLRU - SLRU hit ratio delta 3.22%
-
-WS1 7,000,000
-LRU  hit ratio 54.89%
-SLRU hit ratio 56.76%
-TLRU hit ratio 57.70%
-TLRU - LRU  hit ratio delta 2.81%
-TLRU - SLRU hit ratio delta 0.93%
-
-WS1 8,000,000
-LRU  hit ratio 61.40%
-SLRU hit ratio 62.12%
-TLRU hit ratio 62.46%
-TLRU - LRU  hit ratio delta 1.06%
-TLRU - SLRU hit ratio delta 0.34%
-
-F1 2,500
-LRU  hit ratio 27.74%
-SLRU hit ratio 28.32%
-TLRU hit ratio 27.48%
-TLRU - LRU  hit ratio delta -0.25%
-TLRU - SLRU hit ratio delta -0.83%
-
-F1 5,000
-LRU  hit ratio 30.55%
-SLRU hit ratio 32.18%
-TLRU hit ratio 31.52%
-TLRU - LRU  hit ratio delta 0.96%
-TLRU - SLRU hit ratio delta -0.66%
-
-F1 7,500
-LRU  hit ratio 32.18%
-SLRU hit ratio 34.48%
-TLRU hit ratio 34.04%
-TLRU - LRU  hit ratio delta 1.86%
-TLRU - SLRU hit ratio delta -0.43%
-
-F1 10,000
-LRU  hit ratio 33.27%
-SLRU hit ratio 35.98%
-TLRU hit ratio 35.57%
-TLRU - LRU  hit ratio delta 2.29%
-TLRU - SLRU hit ratio delta -0.41%
-
-F1 12,500
-LRU  hit ratio 34.19%
-SLRU hit ratio 37.09%
-TLRU hit ratio 36.72%
-TLRU - LRU  hit ratio delta 2.53%
-TLRU - SLRU hit ratio delta -0.36%
-
-F1 15,000
-LRU  hit ratio 34.97%
-SLRU hit ratio 37.79%
-TLRU hit ratio 37.60%
-TLRU - LRU  hit ratio delta 2.63%
-TLRU - SLRU hit ratio delta -0.18%
-
-F1 17,500
-LRU  hit ratio 35.62%
-SLRU hit ratio 38.45%
-TLRU hit ratio 38.32%
-TLRU - LRU  hit ratio delta 2.70%
-TLRU - SLRU hit ratio delta -0.12%
-
-F1 20,000
-LRU  hit ratio 36.17%
-SLRU hit ratio 39.01%
-TLRU hit ratio 38.82%
-TLRU - LRU  hit ratio delta 2.65%
-TLRU - SLRU hit ratio delta -0.18%
-```
--->
-
 ## Throughput
-
-No result with 10,000,000 because lru-cache crushes with the next error on the next machine of GitHub Actions.
-It is verified that the error was thrown also when benchmarking only lru-cache.
-Of course it is verified that DWC works fine under the same condition.
-
-> Error: Uncaught RangeError: Map maximum size exceeded
-
-> System:<br>
-  OS: Linux 5.15 Ubuntu 20.04.5 LTS (Focal Fossa)<br>
-  CPU: (2) x64 Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz<br>
-  Memory: 5.88 GB / 6.78 GB
 
 Clock: spica/clock<br>
 ISC: [lru-cache](https://www.npmjs.com/package/lru-cache)<br>
@@ -756,157 +957,157 @@ TRC-L: spica/trul.lru<br>
 DWC: spica/cache<br>
 
 ```
-'Clock new x 1,762,855 ops/sec ±3.54% (110 runs sampled)'
+'Clock new x 1,667,305 ops/sec ±1.26% (116 runs sampled)'
 
-'ISC   new x 18,054 ops/sec ±0.46% (120 runs sampled)'
+'ISC   new x 18,175 ops/sec ±0.95% (121 runs sampled)'
 
-'LRU   new x 26,663,820 ops/sec ±0.95% (122 runs sampled)'
+'LRU   new x 27,118,016 ops/sec ±0.97% (120 runs sampled)'
 
-'TRC-C new x 25,456,476 ops/sec ±1.33% (121 runs sampled)'
+'TRC-C new x 25,545,304 ops/sec ±1.00% (121 runs sampled)'
 
-'TRC-L new x 25,456,051 ops/sec ±1.20% (121 runs sampled)'
+'TRC-L new x 25,607,225 ops/sec ±1.09% (122 runs sampled)'
 
-'DWC   new x 6,660,939 ops/sec ±0.46% (122 runs sampled)'
+'DWC   new x 6,545,022 ops/sec ±0.39% (123 runs sampled)'
 
-'Clock simulation 100 10% x 9,414,387 ops/sec ±0.63% (122 runs sampled)'
+'Clock simulation 100 10% x 9,557,278 ops/sec ±0.37% (122 runs sampled)'
 
-'ISC   simulation 100 10% x 8,984,969 ops/sec ±0.72% (121 runs sampled)'
+'ISC   simulation 100 10% x 9,095,011 ops/sec ±0.55% (123 runs sampled)'
 
-'LRU   simulation 100 10% x 10,790,718 ops/sec ±0.37% (122 runs sampled)'
+'LRU   simulation 100 10% x 10,829,216 ops/sec ±0.59% (123 runs sampled)'
 
-'TRC-C simulation 100 10% x 10,583,002 ops/sec ±0.54% (122 runs sampled)'
+'TRC-C simulation 100 10% x 10,617,912 ops/sec ±0.41% (121 runs sampled)'
 
-'TRC-L simulation 100 10% x 9,622,956 ops/sec ±0.46% (123 runs sampled)'
+'TRC-L simulation 100 10% x 9,541,812 ops/sec ±0.45% (124 runs sampled)'
 
-'DWC   simulation 100 10% x 6,899,358 ops/sec ±0.52% (122 runs sampled)'
+'DWC   simulation 100 10% x 6,629,421 ops/sec ±0.34% (122 runs sampled)'
 
-'Clock simulation 1,000 10% x 9,403,202 ops/sec ±0.50% (122 runs sampled)'
+'Clock simulation 1,000 10% x 9,412,806 ops/sec ±0.48% (122 runs sampled)'
 
-'ISC   simulation 1,000 10% x 8,281,707 ops/sec ±0.68% (123 runs sampled)'
+'ISC   simulation 1,000 10% x 8,316,073 ops/sec ±0.63% (123 runs sampled)'
 
-'LRU   simulation 1,000 10% x 9,390,248 ops/sec ±0.64% (122 runs sampled)'
+'LRU   simulation 1,000 10% x 9,454,926 ops/sec ±0.58% (121 runs sampled)'
 
-'TRC-C simulation 1,000 10% x 9,371,450 ops/sec ±0.60% (122 runs sampled)'
+'TRC-C simulation 1,000 10% x 9,392,368 ops/sec ±0.55% (123 runs sampled)'
 
-'TRC-L simulation 1,000 10% x 8,769,717 ops/sec ±0.42% (122 runs sampled)'
+'TRC-L simulation 1,000 10% x 8,758,622 ops/sec ±0.66% (123 runs sampled)'
 
-'DWC   simulation 1,000 10% x 6,880,442 ops/sec ±0.61% (123 runs sampled)'
+'DWC   simulation 1,000 10% x 6,966,521 ops/sec ±0.54% (122 runs sampled)'
 
-'Clock simulation 10,000 10% x 9,365,785 ops/sec ±0.44% (121 runs sampled)'
+'Clock simulation 10,000 10% x 9,362,730 ops/sec ±0.41% (121 runs sampled)'
 
-'ISC   simulation 10,000 10% x 6,765,160 ops/sec ±0.72% (122 runs sampled)'
+'ISC   simulation 10,000 10% x 6,652,455 ops/sec ±0.61% (121 runs sampled)'
 
-'LRU   simulation 10,000 10% x 8,766,599 ops/sec ±0.85% (121 runs sampled)'
+'LRU   simulation 10,000 10% x 8,772,925 ops/sec ±0.63% (122 runs sampled)'
 
-'TRC-C simulation 10,000 10% x 8,518,274 ops/sec ±1.50% (121 runs sampled)'
+'TRC-C simulation 10,000 10% x 8,458,851 ops/sec ±1.47% (121 runs sampled)'
 
-'TRC-L simulation 10,000 10% x 7,622,128 ops/sec ±0.60% (121 runs sampled)'
+'TRC-L simulation 10,000 10% x 7,584,079 ops/sec ±0.31% (123 runs sampled)'
 
-'DWC   simulation 10,000 10% x 5,847,304 ops/sec ±0.85% (122 runs sampled)'
+'DWC   simulation 10,000 10% x 5,437,515 ops/sec ±0.82% (121 runs sampled)'
 
-'Clock simulation 100,000 10% x 5,800,245 ops/sec ±1.68% (115 runs sampled)'
+'Clock simulation 100,000 10% x 5,851,257 ops/sec ±1.69% (115 runs sampled)'
 
-'ISC   simulation 100,000 10% x 3,428,512 ops/sec ±1.36% (116 runs sampled)'
+'ISC   simulation 100,000 10% x 3,494,768 ops/sec ±1.29% (116 runs sampled)'
 
-'LRU   simulation 100,000 10% x 5,286,012 ops/sec ±2.12% (113 runs sampled)'
+'LRU   simulation 100,000 10% x 5,196,565 ops/sec ±2.10% (112 runs sampled)'
 
-'TRC-C simulation 100,000 10% x 5,640,959 ops/sec ±2.43% (112 runs sampled)'
+'TRC-C simulation 100,000 10% x 5,430,947 ops/sec ±2.41% (111 runs sampled)'
 
-'TRC-L simulation 100,000 10% x 4,929,609 ops/sec ±2.54% (112 runs sampled)'
+'TRC-L simulation 100,000 10% x 4,668,564 ops/sec ±2.79% (110 runs sampled)'
 
-'DWC   simulation 100,000 10% x 3,803,619 ops/sec ±2.14% (107 runs sampled)'
+'DWC   simulation 100,000 10% x 3,911,026 ops/sec ±2.16% (108 runs sampled)'
 
-'Clock simulation 1,000,000 10% x 2,652,173 ops/sec ±3.13% (103 runs sampled)'
+'Clock simulation 1,000,000 10% x 2,623,173 ops/sec ±4.24% (103 runs sampled)'
 
-'ISC   simulation 1,000,000 10% x 1,460,486 ops/sec ±3.66% (105 runs sampled)'
+'ISC   simulation 1,000,000 10% x 1,440,314 ops/sec ±2.41% (108 runs sampled)'
 
-'LRU   simulation 1,000,000 10% x 2,099,026 ops/sec ±4.48% (95 runs sampled)'
+'LRU   simulation 1,000,000 10% x 2,080,750 ops/sec ±4.53% (95 runs sampled)'
 
-'TRC-C simulation 1,000,000 10% x 2,111,358 ops/sec ±5.19% (92 runs sampled)'
+'TRC-C simulation 1,000,000 10% x 2,162,367 ops/sec ±4.78% (92 runs sampled)'
 
-'TRC-L simulation 1,000,000 10% x 2,027,782 ops/sec ±4.41% (96 runs sampled)'
+'TRC-L simulation 1,000,000 10% x 2,047,437 ops/sec ±5.21% (94 runs sampled)'
 
-'DWC   simulation 1,000,000 10% x 2,524,424 ops/sec ±4.58% (97 runs sampled)'
+'DWC   simulation 1,000,000 10% x 2,474,555 ops/sec ±4.53% (101 runs sampled)'
 
-'Clock simulation 100 90% x 20,881,968 ops/sec ±0.85% (121 runs sampled)'
+'Clock simulation 100 90% x 21,155,620 ops/sec ±0.71% (122 runs sampled)'
 
-'ISC   simulation 100 90% x 19,882,887 ops/sec ±0.62% (121 runs sampled)'
+'ISC   simulation 100 90% x 19,353,075 ops/sec ±0.86% (121 runs sampled)'
 
-'LRU   simulation 100 90% x 19,270,216 ops/sec ±0.77% (122 runs sampled)'
+'LRU   simulation 100 90% x 19,479,339 ops/sec ±0.54% (123 runs sampled)'
 
-'TRC-C simulation 100 90% x 18,564,258 ops/sec ±0.55% (122 runs sampled)'
+'TRC-C simulation 100 90% x 18,841,156 ops/sec ±0.57% (123 runs sampled)'
 
-'TRC-L simulation 100 90% x 16,936,115 ops/sec ±0.63% (122 runs sampled)'
+'TRC-L simulation 100 90% x 17,038,554 ops/sec ±0.50% (122 runs sampled)'
 
-'DWC   simulation 100 90% x 8,753,497 ops/sec ±0.42% (122 runs sampled)'
+'DWC   simulation 100 90% x 8,467,752 ops/sec ±0.40% (122 runs sampled)'
 
-'Clock simulation 1,000 90% x 19,710,867 ops/sec ±0.67% (122 runs sampled)'
+'Clock simulation 1,000 90% x 19,883,598 ops/sec ±0.67% (121 runs sampled)'
 
-'ISC   simulation 1,000 90% x 17,133,972 ops/sec ±0.54% (121 runs sampled)'
+'ISC   simulation 1,000 90% x 17,292,058 ops/sec ±0.71% (121 runs sampled)'
 
-'LRU   simulation 1,000 90% x 16,805,166 ops/sec ±0.72% (121 runs sampled)'
+'LRU   simulation 1,000 90% x 16,936,615 ops/sec ±0.52% (123 runs sampled)'
 
-'TRC-C simulation 1,000 90% x 16,661,753 ops/sec ±0.63% (122 runs sampled)'
+'TRC-C simulation 1,000 90% x 16,710,913 ops/sec ±0.61% (122 runs sampled)'
 
-'TRC-L simulation 1,000 90% x 15,223,439 ops/sec ±0.55% (123 runs sampled)'
+'TRC-L simulation 1,000 90% x 15,251,516 ops/sec ±0.54% (122 runs sampled)'
 
-'DWC   simulation 1,000 90% x 8,646,913 ops/sec ±0.40% (122 runs sampled)'
+'DWC   simulation 1,000 90% x 8,117,543 ops/sec ±0.41% (123 runs sampled)'
 
-'Clock simulation 10,000 90% x 17,716,331 ops/sec ±0.70% (121 runs sampled)'
+'Clock simulation 10,000 90% x 17,776,742 ops/sec ±0.65% (121 runs sampled)'
 
-'ISC   simulation 10,000 90% x 14,133,454 ops/sec ±0.77% (122 runs sampled)'
+'ISC   simulation 10,000 90% x 14,203,014 ops/sec ±0.80% (121 runs sampled)'
 
-'LRU   simulation 10,000 90% x 12,002,433 ops/sec ±1.28% (120 runs sampled)'
+'LRU   simulation 10,000 90% x 12,222,023 ops/sec ±1.07% (121 runs sampled)'
 
-'TRC-C simulation 10,000 90% x 11,484,228 ops/sec ±0.61% (121 runs sampled)'
+'TRC-C simulation 10,000 90% x 11,455,181 ops/sec ±0.89% (120 runs sampled)'
 
-'TRC-L simulation 10,000 90% x 10,433,045 ops/sec ±0.53% (120 runs sampled)'
+'TRC-L simulation 10,000 90% x 10,646,780 ops/sec ±0.68% (122 runs sampled)'
 
-'DWC   simulation 10,000 90% x 7,453,628 ops/sec ±0.93% (121 runs sampled)'
+'DWC   simulation 10,000 90% x 7,585,892 ops/sec ±1.14% (121 runs sampled)'
 
-'Clock simulation 100,000 90% x 10,401,128 ops/sec ±1.42% (115 runs sampled)'
+'Clock simulation 100,000 90% x 10,431,555 ops/sec ±1.43% (113 runs sampled)'
 
-'ISC   simulation 100,000 90% x 7,706,599 ops/sec ±1.16% (115 runs sampled)'
+'ISC   simulation 100,000 90% x 7,779,585 ops/sec ±1.10% (116 runs sampled)'
 
-'LRU   simulation 100,000 90% x 7,391,029 ops/sec ±2.26% (116 runs sampled)'
+'LRU   simulation 100,000 90% x 7,437,106 ops/sec ±1.96% (116 runs sampled)'
 
-'TRC-C simulation 100,000 90% x 7,135,837 ops/sec ±2.01% (114 runs sampled)'
+'TRC-C simulation 100,000 90% x 7,014,440 ops/sec ±2.41% (112 runs sampled)'
 
-'TRC-L simulation 100,000 90% x 6,756,826 ops/sec ±1.97% (115 runs sampled)'
+'TRC-L simulation 100,000 90% x 6,763,074 ops/sec ±2.04% (114 runs sampled)'
 
-'DWC   simulation 100,000 90% x 5,457,505 ops/sec ±1.59% (116 runs sampled)'
+'DWC   simulation 100,000 90% x 5,463,251 ops/sec ±1.47% (117 runs sampled)'
 
-'Clock simulation 1,000,000 90% x 4,706,093 ops/sec ±3.22% (104 runs sampled)'
+'Clock simulation 1,000,000 90% x 4,861,279 ops/sec ±3.30% (105 runs sampled)'
 
-'ISC   simulation 1,000,000 90% x 2,765,132 ops/sec ±3.70% (105 runs sampled)'
+'ISC   simulation 1,000,000 90% x 2,761,139 ops/sec ±2.44% (108 runs sampled)'
 
-'LRU   simulation 1,000,000 90% x 2,177,354 ops/sec ±2.42% (114 runs sampled)'
+'LRU   simulation 1,000,000 90% x 2,249,063 ops/sec ±2.47% (109 runs sampled)'
 
-'TRC-C simulation 1,000,000 90% x 2,182,726 ops/sec ±2.55% (107 runs sampled)'
+'TRC-C simulation 1,000,000 90% x 2,168,673 ops/sec ±2.43% (109 runs sampled)'
 
-'TRC-L simulation 1,000,000 90% x 2,099,229 ops/sec ±2.59% (105 runs sampled)'
+'TRC-L simulation 1,000,000 90% x 2,130,084 ops/sec ±2.56% (108 runs sampled)'
 
-'DWC   simulation 1,000,000 90% x 1,712,921 ops/sec ±2.24% (112 runs sampled)'
+'DWC   simulation 1,000,000 90% x 1,722,180 ops/sec ±2.40% (110 runs sampled)'
 
-'ISC   simulation 100 90% expire x 4,288,276 ops/sec ±4.60% (110 runs sampled)'
+'ISC   simulation 100 90% expire x 4,379,308 ops/sec ±4.63% (111 runs sampled)'
 
-'DWC   simulation 100 90% expire x 7,340,468 ops/sec ±0.35% (123 runs sampled)'
+'DWC   simulation 100 90% expire x 7,472,573 ops/sec ±0.50% (122 runs sampled)'
 
-'ISC   simulation 1,000 90% expire x 4,386,285 ops/sec ±3.49% (116 runs sampled)'
+'ISC   simulation 1,000 90% expire x 4,305,741 ops/sec ±3.26% (115 runs sampled)'
 
-'DWC   simulation 1,000 90% expire x 6,780,647 ops/sec ±0.62% (122 runs sampled)'
+'DWC   simulation 1,000 90% expire x 8,407,795 ops/sec ±0.40% (123 runs sampled)'
 
-'ISC   simulation 10,000 90% expire x 3,837,624 ops/sec ±2.00% (117 runs sampled)'
+'ISC   simulation 10,000 90% expire x 3,777,139 ops/sec ±2.71% (116 runs sampled)'
 
-'DWC   simulation 10,000 90% expire x 6,075,286 ops/sec ±1.23% (121 runs sampled)'
+'DWC   simulation 10,000 90% expire x 6,105,993 ops/sec ±1.15% (122 runs sampled)'
 
-'ISC   simulation 100,000 90% expire x 2,868,297 ops/sec ±2.94% (112 runs sampled)'
+'ISC   simulation 100,000 90% expire x 2,814,691 ops/sec ±2.62% (111 runs sampled)'
 
-'DWC   simulation 100,000 90% expire x 3,122,360 ops/sec ±2.37% (104 runs sampled)'
+'DWC   simulation 100,000 90% expire x 3,123,156 ops/sec ±2.28% (105 runs sampled)'
 
-'ISC   simulation 1,000,000 90% expire x 542,304 ops/sec ±5.11% (106 runs sampled)'
+'ISC   simulation 1,000,000 90% expire x 542,673 ops/sec ±5.52% (105 runs sampled)'
 
-'DWC   simulation 1,000,000 90% expire x 626,548 ops/sec ±4.23% (100 runs sampled)'
+'DWC   simulation 1,000,000 90% expire x 625,963 ops/sec ±4.86% (103 runs sampled)'
 ```
 
 ## API
