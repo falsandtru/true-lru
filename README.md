@@ -133,20 +133,20 @@ True LRU
 
 Note that another cache algorithm sometimes changes the parameter values per workload to get a favorite result as the paper of TinyLFU has changed the window size of W-TinyLFU.
 
-- TLRU's results are measured by the same default parameter values.
-- W-TinyLFU's results are the traces of Caffeine.
+- DWC's results are measured by the same default parameter values.
+- Other results are measured by the simulator in Caffeine.
+  - https://github.com/ben-manes/caffeine/wiki/Efficiency
+  - https://docs.google.com/spreadsheets/d/1G3deNz1gJCoXBE2IuraUSwLE7H_EMn4Sn2GU0HTpI5Y (https://github.com/jedisct1/rust-arc-cache/issues/1)
 
 1. Set the datasets to `./benchmark/trace` (See `./benchmark/ratio.ts`).
+    - https://github.com/dgraph-io/benchmarks
+    - https://traces.cs.umass.edu/index.php/Storage/Storage
 2. Run `npm i`.
 3. Run `npm run bench`.
 4. Click the DEBUG button to open a debug tab.
 5. Close the previous tab.
 6. Press F12 key to open devtools.
 7. Select the console tab.
-
-https://github.com/dgraph-io/benchmarks<br>
-https://github.com/ben-manes/caffeine/wiki/Efficiency<br>
-https://docs.google.com/spreadsheets/d/1G3deNz1gJCoXBE2IuraUSwLE7H_EMn4Sn2GU0HTpI5Y (https://github.com/jedisct1/rust-arc-cache/issues/1)<br>
 
 <!--
 // https://www.chartjs.org/docs/latest/charts/line.html
@@ -752,7 +752,7 @@ const data = {
     },
     {
       label: 'DWC',
-      data: [19.54, 29.36, 34.81, 37.74, 39.94, 41.81, 43.22, 44.62],
+      data: [19.47, 29.36, 34.73, 37.74, 39.92, 41.81, 43.34, 44.62],
       borderColor: Utils.color(2),
     },
     {
@@ -774,7 +774,7 @@ const data = {
 };
 -->
 
-![image](https://github.com/falsandtru/true-lru/assets/3143368/69f2fe9c-8b70-4fa8-9182-706ffccc26a4)
+![image](https://github.com/falsandtru/true-lru/assets/3143368/4b737bbb-4887-4df3-822f-c53cc381835d)
 
 ARC > DWC > SLRU, TLRU > W-TinyLFU > (LIRS) > LRU
 
@@ -858,12 +858,12 @@ const data = {
     },
     {
       label: 'TLRU',
-      data: [10.62, 25.03, 37.21, 47.24, 52.04, 53.00, 55.88, 57.96],
+      data: [10.62, 25.03, 37.28, 47.17, 52.04, 53.00, 55.88, 57.96],
       borderColor: Utils.color(1),
     },
     {
       label: 'DWC',
-      data: [15.54, 31.38, 41.57, 47.83, 52.55, 53.64, 54.70, 57.96],
+      data: [15.80, 31.38, 41.65, 47.83, 52.54, 53.64, 54.77, 57.96],
       borderColor: Utils.color(2),
     },
     {
@@ -885,7 +885,7 @@ const data = {
 };
 -->
 
-![image](https://github.com/falsandtru/true-lru/assets/3143368/c4c608bd-9bf1-4b25-a957-fe8f0627a6cb)
+![image](https://github.com/falsandtru/true-lru/assets/3143368/b6d01fb0-1e3f-47a8-9d95-a1a3311f882d)
 
 W-TinyLFU, (LIRS) > DWC > TLRU >> SLRU > ARC > LRU
 
@@ -907,16 +907,16 @@ TLRU - SLRU hit ratio delta 23.63%
 GLI 750
 LRU  hit ratio 1.16%
 SLRU hit ratio 1.42%
-TLRU hit ratio 37.21%
-TLRU - LRU  hit ratio delta 36.05%
-TLRU - SLRU hit ratio delta 35.78%
+TLRU hit ratio 37.28%
+TLRU - LRU  hit ratio delta 36.12%
+TLRU - SLRU hit ratio delta 35.85%
 
 GLI 1,000
 LRU  hit ratio 11.22%
 SLRU hit ratio 31.34%
-TLRU hit ratio 47.24%
-TLRU - LRU  hit ratio delta 36.02%
-TLRU - SLRU hit ratio delta 15.89%
+TLRU hit ratio 47.17%
+TLRU - LRU  hit ratio delta 35.95%
+TLRU - SLRU hit ratio delta 15.82%
 
 GLI 1,250
 LRU  hit ratio 21.25%
