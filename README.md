@@ -12,6 +12,38 @@ The source code is maintained on the next source repository.
 
 https://github.com/falsandtru/spica
 
+## Strategies
+
+- True LRU
+
+LRU and Clock are significantly low performance due to their wrong algorithm based on false recency. True recency outperforms false recency.
+
+There are three kinds of recency relationships between entries, used and used, used and unused, and unused and unused. However, LRU and Clock violate some recency. True LRU outperforms LRU and Clock by observing all recency.
+
+The fundamental error is that new entries are considered most recently used. In fact, they have never been used in the cache. Therefore, new entries must to be added after the entries actually used.
+
+```
+Sequence: 1, 2, 3, 3, 2, 4
+
+LRU
+
+  MRU |4 2 3 1| LRU
+  Hit |0 1 1 0|
+        ^ Violation of the recency between used and unused.
+
+Clock
+
+  N-1 |4 3 2 1| 0
+  Hit |0 1 1 0|
+          ^ Violation of the recency between used and used.
+
+True LRU
+
+  MRU |2 3 4 1| LRU
+  Hit |1 1 0 0|
+        ^ ^ ^ Ideal recency.
+```
+
 ## Efficiency
 
 ### Mathematical efficiency
@@ -96,38 +128,6 @@ TLRU's loop resistance is limited.
 |ARC      |Evict| ✓ |     | ✓  |
 |LIRS     |Evict| ✓ |  ✓ |     |
 |W-TinyLFU|Admit| ✓ |  ✓ | ✓  |
-
-## Strategies
-
-- True LRU
-
-LRU and Clock are significantly low performance due to their wrong algorithm based on false recency. True recency outperforms false recency.
-
-There are three kinds of recency relationships between entries, used and used, used and unused, and unused and unused. However, LRU and Clock violate some recency. True LRU outperforms LRU and Clock by observing all recency.
-
-The fundamental error is that new entries are considered most recently used. In fact, they have never been used in the cache. Therefore, new entries must to be added after the entries actually used.
-
-```
-Sequence: 1, 2, 3, 3, 2, 4
-
-LRU
-
-  MRU |4 2 3 1| LRU
-  Hit |0 1 1 0|
-        ^ Violation of the recency between used and unused.
-
-Clock
-
-  N-1 |4 3 2 1| 0
-  Hit |0 1 1 0|
-          ^ Violation of the recency between used and used.
-
-True LRU
-
-  MRU |2 3 4 1| LRU
-  Hit |1 1 0 0|
-        ^ ^ ^ Ideal recency.
-```
 
 ## Hit ratio
 
