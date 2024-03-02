@@ -44,6 +44,10 @@ True LRU
         ^ ^ ^ Ideal recency.
 ```
 
+Clock is known as an approximation algorithm for LRU, but since LRU and Clock are thus algorithms based on a different kind of recency, Clock is actually not an approximation algorithm for LRU but a different recency-based algorithm based on a different kind of recency.
+
+The large improvement from LRU in True LRU indicates that the majority of the improvements in all algorithms are due to the accidental eviction of unused entries, which are confused and misinterpreted as unique improvements, and that the improvements due to the uniqueness of each algorithm are small or minor. Taking True LRU as the true baseline instead of LRU, the other algorithms do not achieve very attractive performance, especially in general versatility.
+
 ## Efficiency
 
 ### Mathematical efficiency
@@ -53,13 +57,13 @@ Linear time complexity indicates the existence of batch processing.
 Note that admission algorithm doesn't work without eviction algorithm.
 
 |Algorithm|Type |Time complexity<br>(Worst case)|Space complexity<br>(Extra)|Key size|Data structures|
-|:-------:|:---:|:------:|:------:|:---------:|:-----:|
-|LRU      |Evict|Constant|Constant|    1x     |1 list |
-|SLRU     |Evict|Constant|Constant|    1x     |1 list |
-|TLRU     |Evict|Constant|Constant|    1x     |1 list |
-|DWC      |Evict|Constant|Constant|    1x     |2 lists|
-|ARC      |Evict|Constant|Linear  |    2x     |4 lists|
-|LIRS     |Evict|Linear  |Linear  |**3-2500x**|2 lists|
+|:-------:|:---:|:------:|:------:|:----------:|:-----:|
+|LRU      |Evict|Constant|Constant|     1x     |1 list |
+|SLRU     |Evict|Constant|Constant|     1x     |1 list |
+|TLRU     |Evict|Constant|Constant|     1x     |1 list |
+|DWC      |Evict|Constant|Constant|     1x     |2 lists|
+|ARC      |Evict|Constant|Linear  |     2x     |4 lists|
+|LIRS     |Evict|Linear  |Linear  |**3-2,500x**|2 lists|
 |W-TinyLFU|Admit|Linear  |Linear  |*~1-10x*<br>(8bit * 10N * 4)|1 list<br>4 arrays|
 
 https://github.com/ben-manes/caffeine/wiki/Efficiency<br>
@@ -80,8 +84,8 @@ Memoize, etc.
 |TLRU     |      16 bytes|      1x|       32 bytes|                100.00%|
 |DWC      |      17 bytes|      1x|       33 bytes|                 96.96%|
 |ARC      |      17 bytes|      2x|       58 bytes|                 55.17%|
-|(LIRS)   |      33 bytes|      3x|      131 bytes|                 24.42%|
-|(LIRS)   |      33 bytes|     10x|      418 bytes|                  7.65%|
+|LIRS     |      33 bytes|      3x|      131 bytes|                 24.42%|
+|LIRS     |      33 bytes|     10x|      418 bytes|                  7.65%|
 |W-TinyLFU|      56 bytes|      1x|       72 bytes|                 44.44%|
 
 #### 32 byte key and 8 byte value (Session ID / ID)
@@ -95,8 +99,8 @@ In-memory KVS, etc.
 |TLRU     |      16 bytes|      1x|       56 bytes|                100.00%|
 |DWC      |      17 bytes|      1x|       57 bytes|                 98.24%|
 |ARC      |      17 bytes|      2x|       88 bytes|                 63.63%|
-|(LIRS)   |      33 bytes|      3x|      203 bytes|                 27.58%|
-|(LIRS)   |      33 bytes|     10x|      658 bytes|                  8.51%|
+|LIRS     |      33 bytes|      3x|      203 bytes|                 27.58%|
+|LIRS     |      33 bytes|     10x|      658 bytes|                  8.51%|
 |W-TinyLFU|      56 bytes|      1x|       96 bytes|                 58.33%|
 
 #### 16 byte key and 512 byte value (Domain / DNS packet)
@@ -110,14 +114,14 @@ DNS cache server, etc.
 |TLRU     |      16 bytes|      1x|      544 bytes|                100.00%|
 |DWC      |      17 bytes|      1x|      545 bytes|                 99.81%|
 |ARC      |      17 bytes|      2x|      578 bytes|                 94.11%|
-|(LIRS)   |      33 bytes|      3x|      659 bytes|                 82.54%|
-|(LIRS)   |      33 bytes|     10x|    1,002 bytes|                 54.29%|
+|LIRS     |      33 bytes|      3x|      659 bytes|                 82.54%|
+|LIRS     |      33 bytes|     10x|    1,002 bytes|                 54.29%|
 |W-TinyLFU|      56 bytes|      1x|      584 bytes|                 93.15%|
 
 ## Resistance
 
 LIRS's burst resistance means the resistance to continuous cache misses for the last LIR entry or the HIR entries.
-TLRU's loop resistance is limited.
+TLRU's loop resistance is limited to initial only.
 
 |Algorithm|Type |Scan|Loop|Burst|
 |:-------:|:---:|:--:|:--:|:---:|
@@ -128,6 +132,19 @@ TLRU's loop resistance is limited.
 |ARC      |Evict| ✓ |     | ✓  |
 |LIRS     |Evict| ✓ |  ✓ |     |
 |W-TinyLFU|Admit| ✓ |  ✓ | ✓  |
+
+### Loop resistance
+
+DWC automatically adjusts the history size according to the loop size.
+
+|Algorithm|Method    |Duration |Layout|History size|Resistance|Efficiency|
+|:-------:|:--------:|:-------:|:----:|-----------:|---------:|---------:|
+|TLRU     |Eventual  |Initial  |Inner |        100%|     > 10x|  > 1,000%|
+|DWC      |Statistics|Permanent|Inner |          8%|        4x|    5,000%|
+|DWC      |Statistics|Permanent|Inner |         14%|       10x|    7,142%|
+|DWC      |Statistics|Permanent|Inner |        100%|       96x|    9,600%|
+|LIRS     |Log       |Permanent|Outer |300-250,000%|  3-2,500x|      100%|
+|W-TinyLFU|Hash      |Permanent|Outer |        500%|        4x|       80%|
 
 ## Hit ratio
 
