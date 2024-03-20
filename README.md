@@ -20,7 +20,7 @@ LRU and Clock are significantly low performance due to their wrong algorithm bas
 
 There are three kinds of recency relationships between entries, used and used, used and unused, and unused and unused. However, LRU and Clock violate some recency. True LRU outperforms LRU and Clock by observing all recency.
 
-The fundamental error is that new entries are considered most recently used. In fact, they have never been used in the cache. Therefore, new entries must to be added after the entries actually used.
+The fundamental error of LRU is that new entries are considered most recently used. In fact, they have never been used in the cache. Therefore, new entries must to be added after the entries actually used.
 
 ```
 Sequence: 1, 2, 3, 3, 2, 4
@@ -44,9 +44,11 @@ True LRU
         ^ ^ ^ Ideal recency.
 ```
 
-Clock is known as an approximation algorithm for LRU, but since LRU and Clock are thus algorithms based on a different kind of recency, Clock is actually not an approximation algorithm for LRU but a different recency-based algorithm based on a different kind of recency.
+As with reuse distance, there is a difference between unused and used in recency, whether infinite or finite, and there are various possible ways to bridge the difference.
 
-The large improvement from LRU in True LRU indicates that the majority of the improvements in all algorithms are due to the accidental eviction of unused entries, which are confused and misinterpreted as unique improvements, and that the improvements due to the uniqueness of each algorithm are small or minor. Taking True LRU as the true baseline instead of LRU, the other algorithms do not achieve very attractive performance, especially in general versatility.
+The large improvement from LRU in True LRU indicates that the majority of the improvements in all algorithms are due to the accidental eviction of unused entries, which are confused and misinterpreted as unique improvements, and that the improvements due to the uniqueness of each algorithm are small or minor. Taking True LRU as the true baseline instead of LRU, the other algorithms have not achieve very attractive performance, especially in general versatility.
+
+Incidentally, Clock is known as an approximation algorithm for LRU, but since LRU and Clock are thus algorithms based on a different kind of recency, Clock is actually not an approximation algorithm for LRU but a completely different recency-based algorithm based on a different kind of recency.
 
 ## Efficiency
 
