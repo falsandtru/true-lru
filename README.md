@@ -44,17 +44,19 @@ True LRU
         ^ ^ ^ Ideal recency(Recency-complete).
 ```
 
+The fact that this recency is already used and widespread in Clock proves that it is neither strange nor unreasonable, and that Clock has the equivalent or significantly higher hit ratio than LRU shows that recency between used and unused entries is more effective and more important than recency between used entries.
+
+Also, Clock is known as an approximation algorithm for LRU, but since LRU and Clock are thus algorithms based on a different kind of recency, Clock is actually not an approximation algorithm for LRU but a completely different recency-based algorithm based on a different kind of recency.
+
 |Algorithm|Used-Used|Used-Unused|Unused-Unused|
 |:-------:|:-------:|:---------:|:-----------:|
 |LRU      |✓        |           |✓           |
 |Clock    |         |✓          |✓           |
 |True LRU |✓        |✓          |✓           |
 
-As with reuse distance, there is a difference between unused and used in recency, whether infinite or finite, and there are various possible ways to bridge the difference. This adjustability exists only for True LRU and Clock, but not for LRU.
+As with reuse distance, there is a difference between used and unused in recency, whether finite or infinite, and there are various possible ways to bridge the difference. This adjustability exists only for True LRU and Clock, but not for LRU.
 
 The large improvement from LRU in True LRU indicates that the majority of the improvements in all algorithms are due to the accidental eviction of unused entries, which are confused and misinterpreted as unique improvements, and that the improvements due to the uniqueness of each algorithm are small or minor. Taking True LRU as the true baseline instead of LRU, the other algorithms have not achieve very attractive performance, especially in general versatility.
-
-Incidentally, Clock is known as an approximation algorithm for LRU, but since LRU and Clock are thus algorithms based on a different kind of recency, Clock is actually not an approximation algorithm for LRU but a completely different recency-based algorithm based on a different kind of recency.
 
 ## Efficiency
 
@@ -977,8 +979,8 @@ TLRU - SLRU hit ratio delta 0.54%
 - Clock: spica/clock
 - ILRU: lru-cache (https://www.npmjs.com/package/lru-cache)
 - LRU: spica/lru
-- TRC-C: spica/tlru (spica/tlru.clock)
-- TRC-L: spica/tlru.lru
+- TLRU-C: spica/tlru (spica/tlru.clock)
+- TLRU-L: spica/tlru.lru
 - DWC: spica/cache
 
 https://github.com/falsandtru/spica/blob/master/benchmark/cache.ts
